@@ -1,3 +1,4 @@
+import { validateMomentsForm } from "../utils/helper.js";
 import connection from "../utils/mysql.js";
 
 const getAllMonuments = async (_req, res) => {
@@ -5,6 +6,7 @@ const getAllMonuments = async (_req, res) => {
 
   try {
     const [results] = await connection.query(sql);
+    console.log(results);
 
     if (!results.length) {
       res.status(404).json({ message: "No monuments in DB" });
@@ -16,4 +18,23 @@ const getAllMonuments = async (_req, res) => {
   }
 };
 
-export { getAllMonuments };
+const addMonument = async (req, res) => {
+  const formData = req.body;
+  const sql = "INSERT INTO monuments SET ?";
+
+  const validationResult = validateMomentsForm(formData);
+
+  if (!validationResult.success) {
+    return res.status(400).json({ error: validationResult.error });
+  }
+
+  try {
+    const [results] = await connection.query(sql, [formData]);
+
+    res.status(201).json({ message: `Created Monument` });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export { getAllMonuments, addMonument };
