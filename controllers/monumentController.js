@@ -6,7 +6,6 @@ const getAllMonuments = async (_req, res) => {
 
   try {
     const [results] = await connection.query(sql);
-    console.log(results);
 
     if (!results.length) {
       res.status(404).json({ message: "No monuments in DB" });
@@ -22,6 +21,7 @@ const addMonument = async (req, res) => {
   const formData = req.body;
   const sql = "INSERT INTO monuments SET ?";
 
+  console.log(formData);
   const validationResult = validateMomentsForm(formData);
 
   if (!validationResult.success) {
@@ -33,6 +33,7 @@ const addMonument = async (req, res) => {
 
     res.status(201).json({ message: `Created Monument` });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error });
   }
 };
