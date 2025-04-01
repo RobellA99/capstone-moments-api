@@ -1,14 +1,13 @@
 import express from "express";
 import {
   addMonument,
-  getAllCategories,
+  getAllCategory,
   getAllMonuments,
 } from "../controllers/monumentController.js";
 
 const router = express.Router();
 
 router.route("/").get(getAllMonuments).post(addMonument);
-
-router.route("/categories").get(getAllCategories);
+router.route("/category").get(getAllCategory);
 
 export default router;

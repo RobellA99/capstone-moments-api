@@ -17,17 +17,19 @@ const getAllMonuments = async (_req, res) => {
   }
 };
 
-const getAllCategories = async (_req, res) => {
+const getAllCategory = async (_req, res) => {
   const sql = "SELECT DISTINCT category FROM monuments";
 
   try {
     const [results] = await connection.query(sql);
 
     if (!results.length) {
-      res.status(400).json({ message: "No category listed in DB" });
+      return res.status(404).json({ message: "No category listed in DB" });
     }
+
+    res.json(results);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -52,4 +54,4 @@ const addMonument = async (req, res) => {
   }
 };
 
-export { getAllMonuments, addMonument, getAllCategories };
+export { getAllMonuments, addMonument, getAllCategory };
