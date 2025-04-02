@@ -1,14 +1,42 @@
 import { validateMomentsForm } from "../utils/helper.js";
 import connection from "../utils/mysql.js";
 
-const getAllMonuments = async (_req, res) => {
-  const sql = "SELECT * FROM monuments";
+const getAllMonuments = async (req, res) => {
+  const { categories } = req.query;
+
+  // console.log(req.query);
+
+  let sql = "SELECT * FROM monuments";
+
+  if (categories) {
+    const decodedCategories = decodeURIComponent(categories); // Decode the parameter
+    sql += " WHERE category = ? ";
+
+    const formattedCategories = decodedCategories
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/&/g, " & ");
+
+    console.log(formattedCategories);
+    try {
+      const [results] = await connection.query(sql, [formattedCategories]);
+
+      if (!results.length) {
+        return res
+          .status(404)
+          .json({ message: "No monuments found for selected categories" });
+      }
+
+      return res.json(results);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
 
   try {
     const [results] = await connection.query(sql);
 
     if (!results.length) {
-      res.status(404).json({ message: "No monuments in DB" });
+      return res.status(404).json({ message: "No monuments in DB" });
     }
 
     res.json(results);
