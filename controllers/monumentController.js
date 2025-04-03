@@ -1,6 +1,56 @@
 import { validateMomentsForm } from "../utils/helper.js";
 import connection from "../utils/mysql.js";
 
+const getMonumentsByCategory = async (req, res) => {
+  const { category } = req.query;
+
+  if (!category) {
+    return res.status(400).json({ message: "Category is required" });
+  }
+
+  const sql = "SELECT name FROM monuments WHERE category = ?";
+
+  try {
+    const [results] = await connection.query(sql, [category]);
+
+    if (!results.length) {
+      return res
+        .status(404)
+        .json({ message: "No monuments found for this category" });
+    }
+
+    res.json(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getCategoryImages = async (req, res) => {
+  const { category } = req.query;
+
+  if (!category) {
+    return res.status(400).json({ message: "Category is required" });
+  }
+
+  const sql = "SELECT image_url FROM category_images WHERE category = ?";
+
+  try {
+    const [results] = await connection.query(sql, [category]);
+
+    if (!results.length) {
+      return res
+        .status(404)
+        .json({ message: "No images found for this category" });
+    }
+
+    res.json(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const getAllMonuments = async (req, res) => {
   const { categories } = req.query;
 
@@ -76,4 +126,10 @@ const addMonument = async (req, res) => {
   }
 };
 
-export { getAllMonuments, addMonument, getAllCategory };
+export {
+  getAllMonuments,
+  addMonument,
+  getAllCategory,
+  getCategoryImages,
+  getMonumentsByCategory,
+};

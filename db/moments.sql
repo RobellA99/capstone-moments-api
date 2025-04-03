@@ -11,7 +11,15 @@ CREATE TABLE `monuments` (
     `latitude` float NOT NULL,
     `longitude` float NOT NULL,
     `category` varchar(255) NOT NULL, 
-    `description` TEXT NOT NULL
+    `description` TEXT NOT NULL,
+    INDEX (`category`) -- Add an index to the `category` column
+);
+
+CREATE TABLE `category_images` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `category` varchar(255) NOT NULL,
+    `image_url` varchar(2083) NOT NULL, 
+    FOREIGN KEY (`category`) REFERENCES `monuments`(`category`) ON DELETE CASCADE
 );
 
 INSERT INTO `monuments` VALUES 
@@ -41,3 +49,40 @@ INSERT INTO `monuments` VALUES
 (24, "Southwark Cathedral", "London, UK", 51.5063, -0.0903, "Religious & Architectural Marvels", "A beautiful Gothic cathedral near London Bridge, Southwark Cathedral is one of the oldest places of Christian worship in the city. It hosts concerts and events alongside regular services."),
 (25, "Temple Church", "London, UK", 51.5138, -0.1111, "Religious & Architectural Marvels", "Built by the Knights Templar in the 12th century, Temple Church is famous for its circular nave and historical significance in medieval England. It appears in Dan Brown’s *The Da Vinci Code*.");
 
+INSERT INTO `category_images` (`category`, `image_url`) VALUES
+-- Famous Towers & Structures
+("Famous Towers & Structures", "/assets/images/big-ben.jpg"),
+("Famous Towers & Structures", "/assets/images/gherkin.jpg"),
+("Famous Towers & Structures", "/assets/images/shard.jpg"),
+("Famous Towers & Structures", "/assets/images/tower-bridge.jpg"),
+
+-- Modern Attractions
+("Modern Attractions", "/assets/images/02-arena.jpg"),
+("Modern Attractions", "/assets/images/cable-car.jpg"),
+("Modern Attractions", "/assets/images/sky-garden.jpg"),
+("Modern Attractions", "/assets/images/london-eye.jpg"),
+
+-- Cultural & Public Spaces
+("Cultural & Public Spaces", "/assets/images/trafalgar-square.jpg"),
+("Cultural & Public Spaces", "/assets/images/british-museum.jpg"),
+("Cultural & Public Spaces", "/assets/images/covent-garden.jpg"),
+("Cultural & Public Spaces", "/assets/images/piccadilly-circus.jpg"),
+("Cultural & Public Spaces", "/assets/images/leicester-square.jpg"),
+
+-- Historic Landmarks
+("Historic Landmarks", "/assets/images/tower-of-london.jpg"),
+("Historic Landmarks", "/assets/images/westminster-abbey.jpg"),
+("Historic Landmarks", "/assets/images/houses-of-parliament.jpg"),
+("Historic Landmarks", "/assets/images/churchill-war-rooms.jpg"),
+("Historic Landmarks", "/assets/images/hampton-court-palace.jpg"),
+("Historic Landmarks", "/assets/images/windsor-castle.jpg"),
+
+-- Royal Residences
+("Royal Residences", "/assets/images/buckingham-palace.jpg"),
+("Royal Residences", "/assets/images/kensington-palace.jpg"),
+
+-- Religious & Architectural Marvels
+("Religious & Architectural Marvels", "/assets/images/st-pauls.jpg"),
+("Religious & Architectural Marvels", "/assets/images/st-martin.jpg"),
+("Religious & Architectural Marvels", "/assets/images/southwark-cathedral.jpg"),
+("Religious & Architectural Marvels", "/assets/images/temple-church.jpg");
