@@ -4,19 +4,14 @@ import connection from "../utils/mysql.js";
 const getAllMonuments = async (req, res) => {
   const { categories } = req.query;
 
+  console.log(categories.split(","));
   let sql = "SELECT * FROM monuments";
 
   if (categories) {
-    const decodedCategories = decodeURIComponent(categories);
-    sql += " WHERE category = ? ";
+    sql += " WHERE category IN (?) ";
 
-    const formattedCategories = decodedCategories
-      .replace(/([a-z])([A-Z])/g, "$1 $2")
-      .replace(/&/g, " & ");
-
-    console.log(formattedCategories);
     try {
-      const [results] = await connection.query(sql, [formattedCategories]);
+      const [results] = await connection.query(sql, [categories.split(",")]);
 
       if (!results.length) {
         return res
@@ -26,6 +21,7 @@ const getAllMonuments = async (req, res) => {
 
       return res.json(results);
     } catch (error) {
+      console.log(error);
       return res.status(500).json({ error: error.message });
     }
   }
