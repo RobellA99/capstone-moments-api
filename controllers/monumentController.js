@@ -43,7 +43,6 @@ const getCategoryImages = async (req, res) => {
         .status(404)
         .json({ message: "No images found for this category" });
     }
-
     res.json(results);
   } catch (error) {
     console.error(error);
@@ -54,7 +53,6 @@ const getCategoryImages = async (req, res) => {
 const getAllMonuments = async (req, res) => {
   const { categories } = req.query;
 
-  console.log(categories.split(","));
   let sql = "SELECT * FROM monuments";
 
   if (categories) {
@@ -109,7 +107,6 @@ const addMonument = async (req, res) => {
   const formData = req.body;
   const sql = "INSERT INTO monuments SET ?";
 
-  console.log(formData);
   const validationResult = validateMomentsForm(formData);
 
   if (!validationResult.success) {
