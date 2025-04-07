@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import monumentRoutes from "./routes/monumentRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 import path from "path";
 
 const PORT = process.env.PORT || 5050;
@@ -19,6 +20,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/monuments", monumentRoutes);
+app.use("/category", categoryRoutes);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
