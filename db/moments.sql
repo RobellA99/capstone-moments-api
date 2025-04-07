@@ -66,7 +66,7 @@ INSERT INTO `category_images` (`category`, `image_url`) VALUES
 ("Cultural & Public Spaces", "/assets/images/trafalgar-square.jpg"),
 ("Cultural & Public Spaces", "/assets/images/british-museum.jpg"),
 ("Cultural & Public Spaces", "/assets/images/covent-garden.jpg"),
-("Cultural & Public Spaces", "/assets/images/piccadilly-circus.jpg"),
+("Cultural & Public Spaces", "/assets/images/picadilly-circus.jpg"),
 ("Cultural & Public Spaces", "/assets/images/leicester-square.jpg"),
 
 -- Historic Landmarks
