@@ -2,6 +2,32 @@
 
 A web app that allows you to build a personalised custom route when exploring a city, allowing everyone's journey to be a unique discovery.
 
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
 ## API Reference
 
 #### Get all monuments
@@ -44,7 +70,3 @@ To run this project, you will need to add the following environment variables to
 `DB_USER`
 `DB_PASSWORD`
 `DB_DATABASE`
-
-## Authors
-
-- [@RobellA99](https://www.github.com/RobellA99)
