@@ -57,10 +57,10 @@ INSERT INTO `category_images` (`category`, `image_url`) VALUES
 ("Famous Towers & Structures", "/assets/images/tower-bridge.jpg"),
 
 -- Modern Attractions
+("Modern Attractions", "/assets/images/london-eye.jpg"),
+("Modern Attractions", "/assets/images/sky-garden.jpg"),
 ("Modern Attractions", "/assets/images/02-arena.jpg"),
 ("Modern Attractions", "/assets/images/cable-car.jpg"),
-("Modern Attractions", "/assets/images/sky-garden.jpg"),
-("Modern Attractions", "/assets/images/london-eye.jpg"),
 
 -- Cultural & Public Spaces
 ("Cultural & Public Spaces", "/assets/images/trafalgar-square.jpg"),
