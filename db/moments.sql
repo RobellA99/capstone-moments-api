@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS `moments`;
+-- DROP DATABASE IF EXISTS `moments`;
 
-CREATE DATABASE `moments`;
+-- CREATE DATABASE `moments`;
 
-USE `moments`;
+-- USE `moments`;
 
 CREATE TABLE `monuments` (
     `id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, 
