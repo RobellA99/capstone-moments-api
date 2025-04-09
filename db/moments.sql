@@ -12,7 +12,7 @@ CREATE TABLE `monuments` (
     `longitude` float NOT NULL,
     `category` varchar(255) NOT NULL, 
     `description` TEXT NOT NULL,
-    INDEX (`category`) -- Add an index to the `category` column
+    INDEX (`category`) 
 );
 
 CREATE TABLE `category_images` (
